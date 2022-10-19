@@ -12,10 +12,10 @@
 		text-transform: uppercase;
 	}
 
-    .tag-h1 {
+	.tag-h1 {
 		font-size: 1.5rem;
 		font-weight: 700;
 		line-height: 2rem;
 		margin-bottom: 1rem;
-    }
+	}
 </style>
