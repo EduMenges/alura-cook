@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Tag from "./Tag.svelte";
+	import Tag from './Tag.svelte';
 
 	export let ingredientes: string[];
 </script>
@@ -9,7 +9,9 @@
 
 	<ul class="meus-ingredientes">
 		{#each ingredientes as ingrediente (ingrediente)}
-			<li><Tag ativa={true}>{ingrediente}</Tag></li>
+			<li>
+				<Tag ativa={true}>{ingrediente}</Tag>
+			</li>
 		{/each}
 	</ul>
 </section>

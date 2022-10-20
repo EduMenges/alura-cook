@@ -1,17 +1,23 @@
 <script lang="ts">
-	import type ICategoria from '$lib/types/ICategoria';
+	import type ICategoria from '$lib/interfaces/ICategoria';
 	import IngredienteSelecionavel from './IngredienteSelecionavel.svelte';
 
 	export let categoria: ICategoria;
 </script>
 
 <div class="categoria-container">
-	<img class="categoria-imagem" src="/icones/categorias_ingredientes/{categoria.imagem}" alt="" />
+	<img
+		src="/icones/categorias_ingredientes/{categoria.imagem}"
+		alt={categoria.nome}
+		class="categoria-imagem"
+	/>
+
 	<h3 class="categoria-nome">{categoria.nome}</h3>
+
 	<ul class="ingredientes">
-		{#each categoria.ingredientes.sort() as ingrediente (ingrediente)}
+		{#each categoria.ingredientes as ingrediente (ingrediente)}
 			<li>
-				<IngredienteSelecionavel {ingrediente} on:adicionarIngrediente />
+				<IngredienteSelecionavel {ingrediente} on:adicionarIngrediente on:removerIngrediente />
 			</li>
 		{/each}
 	</ul>

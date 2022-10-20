@@ -2,11 +2,12 @@
 	import '/src/app.css';
 	import Cabecalho from '$components/Cabecalho.svelte';
 	import MinhaLista from '$lib/components/MinhaLista.svelte';
+	import Tag from '$components/Tag.svelte';
 	import Titulo from '$components/Titulo.svelte';
 	import _categorias from '$lib/json/categorias.json';
 	import type ICategoria from '$lib/types/ICategoria';
 	import Categoria from '$components/Categoria.svelte';
-	import type IIngrediente from '$lib/types/IIgrediente';
+	import Rodape from '$components/Rodape.svelte';
 
 	const categorias: ICategoria[] = _categorias;
 	let minhaLista: string[] = [];
@@ -14,6 +15,13 @@
 	function adicionarIngrediente(evento: CustomEvent<string>) {
 		const ingrediente = evento.detail;
 		minhaLista = [...minhaLista, ingrediente];
+	}
+
+	function removerIngrediente(evento: CustomEvent<string>) {
+		const ingrediente = evento.detail;
+		minhaLista = minhaLista.filter((item) => {
+			return item !== ingrediente;
+		});
 	}
 </script>
 
@@ -24,11 +32,12 @@
 <div class="container-principal">
 	<Cabecalho />
 	<div class="estilo-principal">
-		<div class="minha-lista-container">
-			<MinhaLista ingredientes={minhaLista}/>
-			<div class="divisoria" />
-		</div>
-
+		{#if minhaLista.length != 0}
+			<div class="minha-lista-container">
+				<MinhaLista ingredientes={minhaLista} />
+				<div class="divisoria" />
+			</div>
+		{/if}
 		<main>
 			<Titulo tag="h1">Ingredientes</Titulo>
 
@@ -40,12 +49,18 @@
 			<ul class="categorias">
 				{#each categorias as categoria (categoria.nome)}
 					<li>
-						<Categoria categoria={categoria} on:adicionarIngrediente={adicionarIngrediente}/>
+						<Categoria
+							{categoria}
+							on:adicionarIngrediente={adicionarIngrediente}
+							on:removerIngrediente={removerIngrediente}
+						/>
 					</li>
 				{/each}
 			</ul>
+			<a href="/receitas" class="buscar-receitas"> <Tag ativa={true} tamanho="lg">Carregar receitas</Tag></a>
 		</main>
 	</div>
+	<Rodape/>
 </div>
 
 <style>
@@ -88,4 +103,8 @@
 		justify-content: center;
 		gap: 1.5rem;
 	}
+	.buscar-receitas {
+        display: flex;
+        justify-content: center;
+    }
 </style>

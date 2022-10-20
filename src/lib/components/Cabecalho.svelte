@@ -1,19 +1,23 @@
 <header>
-    <img src="/imagens/alura-cook-logo.svg" alt="logo do alura cook">
+	<img src="/imagens/alura-cook-logo.svg" alt="Logo do Alura Cook" />
 </header>
 
 <style>
-        header {
-      --largura-tela-base: 1440;
+	header {
+		--largura-tela-base: 1440;
 
-        background: url("/imagens/header.png") no-repeat;
-        background-size: 100%;
+		background: url('/imagens/header.png') no-repeat;
+		background-size: 100%;
 
-        height: calc((325 / var(--largura-tela-base)) * 100vw);
-        margin-bottom: 3rem;
+		height: calc((325 / var(--largura-tela-base)) * 100vw);
+		margin-bottom: 3rem;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	header > img {
+		width: calc((254 / var(--largura-tela-base)) * 100vw);
+	}
 </style>
