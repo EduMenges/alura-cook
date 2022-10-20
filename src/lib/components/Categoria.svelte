@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type ICategoria from 'src/types/ICategoria';
-	import Tag from './Tag.svelte';
+	import type ICategoria from '$lib/types/ICategoria';
+	import IngredienteSelecionavel from './IngredienteSelecionavel.svelte';
 
 	export let categoria: ICategoria;
 </script>
@@ -11,7 +11,7 @@
 	<ul class="ingredientes">
 		{#each categoria.ingredientes.sort() as ingrediente (ingrediente)}
 			<li>
-				<Tag>{ingrediente}</Tag>
+				<IngredienteSelecionavel {ingrediente} on:adicionarIngrediente />
 			</li>
 		{/each}
 	</ul>

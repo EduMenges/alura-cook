@@ -2,6 +2,7 @@
 	export let ativa = false;
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="tag" class:ativa>
 	<slot />
 </div>

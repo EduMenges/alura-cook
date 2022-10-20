@@ -1,14 +1,15 @@
-<script>
-	import Tag from './Tag.svelte';
+<script lang="ts">
+	import Tag from "./Tag.svelte";
 
-	let ingredientes = ['Alho', 'Manteiga', 'Ovos'];
+	export let ingredientes: string[];
 </script>
 
 <section class="minha-lista">
 	<h2>Sua lista:</h2>
+
 	<ul class="meus-ingredientes">
 		{#each ingredientes as ingrediente (ingrediente)}
-			<li><Tag>{ingrediente}</Tag></li>
+			<li><Tag ativa={true}>{ingrediente}</Tag></li>
 		{/each}
 	</ul>
 </section>

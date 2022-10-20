@@ -4,10 +4,17 @@
 	import MinhaLista from '$lib/components/MinhaLista.svelte';
 	import Titulo from '$components/Titulo.svelte';
 	import _categorias from '$lib/json/categorias.json';
-	import type ICategoria from 'src/types/ICategoria';
+	import type ICategoria from '$lib/types/ICategoria';
 	import Categoria from '$components/Categoria.svelte';
+	import type IIngrediente from '$lib/types/IIgrediente';
 
 	const categorias: ICategoria[] = _categorias;
+	let minhaLista: string[] = [];
+
+	function adicionarIngrediente(evento: CustomEvent<string>) {
+		const ingrediente = evento.detail;
+		minhaLista = [...minhaLista, ingrediente];
+	}
 </script>
 
 <svelte:head>
@@ -18,7 +25,7 @@
 	<Cabecalho />
 	<div class="estilo-principal">
 		<div class="minha-lista-container">
-			<MinhaLista />
+			<MinhaLista ingredientes={minhaLista}/>
 			<div class="divisoria" />
 		</div>
 
@@ -33,7 +40,7 @@
 			<ul class="categorias">
 				{#each categorias as categoria (categoria.nome)}
 					<li>
-						<Categoria categoria={categoria}/>
+						<Categoria categoria={categoria} on:adicionarIngrediente={adicionarIngrediente}/>
 					</li>
 				{/each}
 			</ul>
