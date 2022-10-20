@@ -1,27 +1,22 @@
 <script lang="ts">
-	import '/src/app.css';
-	import Cabecalho from '$components/Cabecalho.svelte';
-	import MinhaLista from '$lib/components/MinhaLista.svelte';
-	import Tag from '$components/Tag.svelte';
-	import Titulo from '$components/Titulo.svelte';
-	import _categorias from '$lib/json/categorias.json';
-	import type ICategoria from '$lib/types/ICategoria';
-	import Categoria from '$components/Categoria.svelte';
-	import Rodape from '$components/Rodape.svelte';
+	import '../app.css';
 
-	const categorias: ICategoria[] = _categorias;
-	let minhaLista: string[] = [];
+	import MinhaLista from '$lib/components/MinhaLista.svelte';
+	import Titulo from '$lib/components/Titulo.svelte';
+
+	import categorias from '$lib/json/categorias.json';
+	import Categoria from '$lib/components/Categoria.svelte';
+	import Tag from '$lib/components/Tag.svelte';
+	import { minhaLista } from 'src/stores/minhaLista';
 
 	function adicionarIngrediente(evento: CustomEvent<string>) {
 		const ingrediente = evento.detail;
-		minhaLista = [...minhaLista, ingrediente];
+		$minhaLista = [...$minhaLista, ingrediente];
 	}
 
 	function removerIngrediente(evento: CustomEvent<string>) {
 		const ingrediente = evento.detail;
-		minhaLista = minhaLista.filter((item) => {
-			return item !== ingrediente;
-		});
+		$minhaLista = $minhaLista.filter((item) => item !== ingrediente);
 	}
 </script>
 
@@ -29,53 +24,42 @@
 	<title>Alura Cook</title>
 </svelte:head>
 
-<div class="container-principal">
-	<Cabecalho />
-	<div class="estilo-principal">
-		{#if minhaLista.length != 0}
-			<div class="minha-lista-container">
-				<MinhaLista ingredientes={minhaLista} />
-				<div class="divisoria" />
-			</div>
-		{/if}
-		<main>
-			<Titulo tag="h1">Ingredientes</Titulo>
+{#if $minhaLista.length}
+	<div class="minha-lista-container">
+		<MinhaLista ingredientes={$minhaLista} />
 
-			<div class="info">
-				<p>Selecione abaixo os ingredientes que você deseja usar nesta refeição:</p>
-				<p>*Atenção: consideramos que você tenha em casa sal, pimenta e água.</p>
-			</div>
-
-			<ul class="categorias">
-				{#each categorias as categoria (categoria.nome)}
-					<li>
-						<Categoria
-							{categoria}
-							on:adicionarIngrediente={adicionarIngrediente}
-							on:removerIngrediente={removerIngrediente}
-						/>
-					</li>
-				{/each}
-			</ul>
-			<a href="/receitas" class="buscar-receitas"> <Tag ativa={true} tamanho="lg">Carregar receitas</Tag></a>
-		</main>
+		<div class="divisoria" />
 	</div>
-	<Rodape/>
-</div>
+{/if}
+
+<main>
+	<Titulo tag="h1">Ingredientes</Titulo>
+
+	<div class="info">
+		<p>Selecione abaixo os ingredientes que você deseja usar nesta refeição:</p>
+		<p>*Atenção: consideramos que você tenha em casa sal, pimenta e água.</p>
+	</div>
+
+	<ul class="categorias">
+		{#each categorias as categoria (categoria.nome)}
+			<li>
+				<Categoria
+					{categoria}
+					on:adicionarIngrediente={adicionarIngrediente}
+					on:removerIngrediente={removerIngrediente}
+				/>
+			</li>
+		{/each}
+	</ul>
+
+	<div class="buscar-receitas">
+		<a href="/receitas">
+			<Tag ativa={true} tamanho="lg">Buscar Receitas!</Tag>
+		</a>
+	</div>
+</main>
 
 <style>
-	.container-principal {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
-
-	.estilo-principal {
-		text-align: center;
-		padding: 0 5vw 3.375rem;
-		flex: 1;
-	}
-
 	.minha-lista-container {
 		margin-bottom: 2rem;
 	}
@@ -103,8 +87,9 @@
 		justify-content: center;
 		gap: 1.5rem;
 	}
+
 	.buscar-receitas {
-        display: flex;
-        justify-content: center;
-    }
+		display: flex;
+		justify-content: center;
+	}
 </style>

@@ -1,7 +1,7 @@
 <svelte:head>
-    <title>Alura Cook — Receitas</title>
+    <title>Alura Cook | Receitas</title>
 </svelte:head>
 
-<p>Aqui vem as receitas!</p>
+<p>Aqui vem as receitas...</p>
 
 <a href="/">Voltar para a página principal</a>
