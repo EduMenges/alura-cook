@@ -7,17 +7,7 @@
 	import categorias from '$lib/json/categorias.json';
 	import Categoria from '$lib/components/Categoria.svelte';
 	import Tag from '$lib/components/Tag.svelte';
-	import { minhaLista } from 'src/stores/minhaLista';
-
-	function adicionarIngrediente(evento: CustomEvent<string>) {
-		const ingrediente = evento.detail;
-		$minhaLista = [...$minhaLista, ingrediente];
-	}
-
-	function removerIngrediente(evento: CustomEvent<string>) {
-		const ingrediente = evento.detail;
-		$minhaLista = $minhaLista.filter((item) => item !== ingrediente);
-	}
+	import { minhaLista } from '$lib/stores/minhaLista';
 </script>
 
 <svelte:head>
@@ -26,7 +16,7 @@
 
 {#if $minhaLista.length}
 	<div class="minha-lista-container">
-		<MinhaLista ingredientes={$minhaLista} />
+		<MinhaLista/>
 
 		<div class="divisoria" />
 	</div>
@@ -45,8 +35,6 @@
 			<li>
 				<Categoria
 					{categoria}
-					on:adicionarIngrediente={adicionarIngrediente}
-					on:removerIngrediente={removerIngrediente}
 				/>
 			</li>
 		{/each}
