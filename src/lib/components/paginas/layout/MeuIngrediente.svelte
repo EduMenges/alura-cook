@@ -13,8 +13,8 @@
 		<button class="close" on:click={removerIngrediente} />
 		{ingrediente}
 	</Tag>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <span class="remover" on:click={removerIngrediente}>Remover</span>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<span class="remover" on:click={removerIngrediente}>Remover</span>
 </article>
 
 <style>

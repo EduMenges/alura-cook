@@ -5,8 +5,7 @@
 	export let receita: IReceita;
 </script>
 
-
-<Card>
+<Card --largura="280px">
 	<img src={`/imagens/receitas/${receita.imagem}`} alt={receita.nome} class="receita-img" />
 	<article class="receita-info">
 		<h3 class="receita-nome">{receita.nome}</h3>
