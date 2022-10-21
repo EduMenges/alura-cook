@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Tag from './Tag.svelte';
+	import Tag from '../../compartilhados/Tag.svelte';
 	import { minhaLista } from '$lib/stores/minhaLista';
 </script>
 
