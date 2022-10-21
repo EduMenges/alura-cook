@@ -1,12 +1,15 @@
 <script lang="ts">
+	import type IReceita from '$lib/interfaces/IReceita';
 	import Card from '../../compartilhados/Card.svelte';
+
+	export let receita: IReceita;
 </script>
 
-<img src="\imagens\receitas\alho_assado.png" alt="alho assado" class="receita-img" />
 
 <Card>
+	<img src={`/imagens/receitas/${receita.imagem}`} alt={receita.nome} class="receita-img" />
 	<article class="receita-info">
-		<h3 class="receita-nome">Alho assado</h3>
+		<h3 class="receita-nome">{receita.nome}</h3>
 	</article>
 </Card>
 
