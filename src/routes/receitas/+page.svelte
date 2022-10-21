@@ -4,6 +4,7 @@
 	import _receitas from '$lib/json/receitas.json';
 	import type IReceita from '$lib/interfaces/IReceita';
 	import { minhaLista } from '$lib/stores/minhaLista';
+	import TagLink from '$components/compartilhados/TagLink.svelte';
 
 	let receitasFiltradas: IReceita[];
 	$: receitasFiltradas = _receitas
@@ -31,11 +32,16 @@
 		{/if}
 	</div>
 
+	{#if !semReceitas}
 	<ul class="receitas">
 		{#each receitasFiltradas as receita (receita.nome)}
 			<li><Receita {receita} /></li>
 		{/each}
 	</ul>
+	{/if}
+	<div class="editar-lista">
+		<TagLink href="/" desabilitada={false}>Editar lista</TagLink>
+	</div>
 </main>
 
 <style>
@@ -59,5 +65,10 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 1.5rem;
+	}
+
+	.editar-lista {
+		display: flex;
+		justify-content: center;
 	}
 </style>

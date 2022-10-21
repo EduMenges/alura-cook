@@ -8,6 +8,7 @@
 	import Categoria from '$components/paginas/index/Categoria.svelte';
 	import Tag from '$components/compartilhados/Tag.svelte';
 	import { beforeNavigate } from '$app/navigation';
+	import TagLink from '$components/compartilhados/TagLink.svelte';
 	
 	beforeNavigate((navigation) => {
 		if ($minhaLista.length === 0) {
@@ -39,9 +40,7 @@
 	</ul>
 
 	<div class="buscar-receitas">
-		<a href="/receitas">
-			<Tag ativa={true} tamanho="lg" desabilitada={$minhaLista.length == 0}>Buscar Receitas!</Tag>
-		</a>
+		<TagLink href="/receitas" desabilitada={$minhaLista.length == 0}>Buscar receitas</TagLink>
 	</div>
 </main>
 
