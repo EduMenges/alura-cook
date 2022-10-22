@@ -1,8 +1,10 @@
 <script lang="ts">
+	import '../app.css';
+
 	import Cabecalho from '$components/paginas/layout/Cabecalho.svelte';
 	import Rodape from '$components/paginas/layout/Rodape.svelte';
-    import { minhaLista } from '$lib/stores/minhaLista';
-    import MinhaLista from '$components/paginas/layout/MinhaLista.svelte';
+	import { minhaLista } from '$lib/stores/minhaLista';
+	import MinhaLista from '$components/paginas/layout/MinhaLista.svelte';
 </script>
 
 <div class="container-principal">

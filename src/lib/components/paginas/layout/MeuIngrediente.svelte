@@ -25,7 +25,7 @@ transition:fade={{duration: 200}}>
 	}
 
 	.close {
-		background-image: url('icones/close.svg');
+		background-image: url('/icones/close.svg');
 		height: 10px;
 		width: 10px;
 		cursor: pointer;

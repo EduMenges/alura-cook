@@ -1,6 +1,4 @@
-<script lang="ts">
-	import '../app.css';
-	
+<script lang="ts">	
 	import {minhaLista} from "$lib/stores/minhaLista"
 	import Titulo from '$components/compartilhados/Titulo.svelte';
 
